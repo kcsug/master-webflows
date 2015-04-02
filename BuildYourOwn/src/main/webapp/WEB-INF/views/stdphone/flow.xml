@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<on-start>
+		<evaluate expression="stdPhoneService.addType(phone)" />
+	</on-start>
+	
+    <view-state id="chooseColor" view="stdphone/color" model="colorChooser">
+    	<on-entry>
+    		<evaluate expression="stdPhoneService.newColorChooser()" result="viewScope.colorChooser" />
+    	</on-entry>
+    	<transition on="continue" to="chooseStyle" >
+    		<evaluate expression="stdPhoneService.addColor(phone, colorChooser)" />
+    	</transition>
+    	<transition on="cancel" to="quit"/>
+    </view-state>
+    
+    <view-state id="chooseStyle" view="stdphone/style" model="styleChooser">
+    	<on-entry>
+    		<evaluate expression="new org.demo.buildyourown.web.webflow.command.StyleChooser()" result="viewScope.styleChooser" />
+    	</on-entry>
+    	<transition on="changeStyle" >
+    		<render fragments="body" />
+    	</transition>
+    	<transition on="continue" to="continue">
+    		<evaluate expression="stdPhoneService.addStyle(phone, styleChooser)" />
+    	</transition>
+    	<transition on="cancel" to="cancel"/>
+    </view-state>
+    
+    <end-state id="continue" />
+	<end-state id="cancel" />
+</flow>

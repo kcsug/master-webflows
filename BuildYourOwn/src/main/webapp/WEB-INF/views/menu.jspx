@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:menu="urn:jsptagdir:/WEB-INF/tags/menu" id="menu" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <menu:menu id="_menu" >
+        <menu:category id="c_flows" >
+            <menu:item id="i_flows_mainflow" messageCode="webflow_menu_enter" url="/mainflow" />
+            <menu:item id="i_flows_purchase" messageCode="webflow_menu_enter" url="/purchase" />
+        </menu:category>
+    </menu:menu>
+</div>

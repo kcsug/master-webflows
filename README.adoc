@@ -1,0 +1,6 @@
+
+= April 1, 2015 http://www.meetup.com/kc-spring/events/220895935/[Mastering Workflows in the Browser with Spring Web Flow]
+
+* Presenter: Craig Fulton
+* Source Code: https://github.com/kcsug/mastering-workflows
+* https://github.com/kcsug/master-webflows/blob/763fc795aa5c62ce2820e8477906c24404f31acd/SpringWebFlow.pdf[Slides]

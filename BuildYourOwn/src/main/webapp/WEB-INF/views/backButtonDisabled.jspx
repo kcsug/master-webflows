@@ -1,0 +1,13 @@
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+	  xmlns:util="urn:jsptagdir:/WEB-INF/tags/util" >
+<jsp:output doctype-root-element="HTML" doctype-public ="-//W3C//DTD HTML 4.01 Transitional//EN" doctype-system="http://www.w3.org/TR/html4/loose.dtd" omit-xml-declaration="yes" />
+<jsp:directive.page contentType="text/html;charset=UTF-8" />
+<jsp:directive.page pageEncoding="UTF-8" />
+<head >
+</head>
+	<body onload="history.go(1);" />
+	<div>
+		<div>A transactional boundary was completed and the back button was disabled.</div>
+		<div>Please move forward to your previous window.</div>
+	</div>
+</html>

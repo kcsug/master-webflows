@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flow xmlns="http://www.springframework.org/schema/webflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <view-state id="chooseType" view="mainflow/choose-type" model="choose">
+    	<on-entry>
+ 			<evaluate expression="new org.demo.buildyourown.web.webflow.command.Choose()" result="viewScope.choose"/>
+ 		</on-entry>
+    	<transition on="continue" to="phoneSubFlow">
+    		<evaluate expression="mainService.makePhone(choose)" result="conversationScope.phone" />
+    		<set name="requestScope.nextFlowName" value="mainService.nextFlowName(phone)" />
+    	</transition>
+    	<transition on="next" to="phoneSubFlow" bind="false">
+    		<evaluate expression="mainService.makeStdPhone()" result="conversationScope.phone" />
+    		<set name="requestScope.nextFlowName" value="mainService.nextFlowName(phone)" />
+    	</transition>
+    	<transition on="cancel" to="end-state"/>
+    </view-state>
+
+    <subflow-state id="phoneSubFlow" subflow="#{requestScope.nextFlowName}">
+		<transition on="continue" to="cart" >
+			
+		</transition>
+		<transition on="cancel" to="chooseType" />
+	</subflow-state>
+	
+    <view-state id="cart" view="mainflow/cart" >
+    	<transition on="continue" to="purchase" history="invalidate"/>
+    	<transition on="cancel" to="end-state"/>
+    </view-state>
+    
+     <subflow-state id="purchase" subflow="purchase">
+		<transition on="complete" to="end-state" />
+		<transition on="cancel" to="cart" />
+	</subflow-state>
+    
+    <!-- A sample end state -->
+    <end-state id="end-state" view="purchase/complete"/>
+	
+</flow>
